@@ -4,7 +4,7 @@ import User from "../../modulels/UserModel.js";
 
 export const authUser = expressAsyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  const user = await User.findOne(email);
+  const user = await User.findOne({email});
 
   if (user && (await user.matchPassword(password))) {
     const token = generateToken(user._id);

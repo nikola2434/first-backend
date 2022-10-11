@@ -4,6 +4,8 @@ import colors from "colors";
 import dotenv from "dotenv";
 
 import userRoutes from "./routes/userRoutes.js";
+import recipeRoutes from "./routes/recipeRoutes.js";
+
 import { connectDB } from "./config/db.js";
 import {
   middlewareError,
@@ -23,6 +25,7 @@ if (process.env.NODE_ENV === "DEVELOPMENT") {
 app.use(express.json());
 
 app.use("/api/users", userRoutes);
+app.use("/api/recipe", recipeRoutes);
 
 app.use(notFoundError);
 app.use(middlewareError);
