@@ -1,4 +1,5 @@
 import expressHandler from "express-async-handler";
+import { generateToken } from "../../helper/generateToken.js";
 import User from "../../modulels/UserModel.js";
 
 export const registerUser = expressHandler(async (req, res) => {
@@ -10,6 +11,6 @@ export const registerUser = expressHandler(async (req, res) => {
   }
 
   const user = await User.create({ email, password, age, name });
-
-  res.json(user);
+  const token = generateToken(user._id);
+  res.json({ user, token });
 });

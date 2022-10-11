@@ -5,6 +5,10 @@ import dotenv from "dotenv";
 
 import userRoutes from "./routes/userRoutes.js";
 import { connectDB } from "./config/db.js";
+import {
+  middlewareError,
+  notFoundError,
+} from "./middleware/middleWareError.js";
 
 dotenv.config();
 
@@ -19,6 +23,9 @@ if (process.env.NODE_ENV === "DEVELOPMENT") {
 app.use(express.json());
 
 app.use("/api/users", userRoutes);
+
+app.use(notFoundError);
+app.use(middlewareError);
 
 const PORT = process.env.PORT || 5000;
 
