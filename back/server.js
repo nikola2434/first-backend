@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 
 import userRoutes from "./routes/userRoutes.js";
 import recipeRoutes from "./routes/recipeRoutes.js";
+import dishTypeRouter from "./routes/dishTypeRouter.js";
 
 import { connectDB } from "./config/db.js";
 import {
@@ -26,6 +27,7 @@ app.use(express.json());
 
 app.use("/api/users", userRoutes);
 app.use("/api/recipe", recipeRoutes);
+app.use("/api/dishType", dishTypeRouter);
 
 app.use(notFoundError);
 app.use(middlewareError);
